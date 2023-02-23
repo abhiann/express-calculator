@@ -10,6 +10,10 @@ app.get("/", function(req, res){
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/bmicalculator", function(req, res){
+    res.sendFile(__dirname +"/bmiCalculator.html");
+})
+
 
 
 app.post("/", function(req,res){
@@ -20,6 +24,18 @@ app.post("/", function(req,res){
 
     res.send("The result of the the calculation is " + result);
 })
+
+app.post("/bmicalculator", function(req, res){
+    const weight = Number(req.body.weight);
+    const height = Number(req.body.height);
+    const bmi = Math.round(weight/(height*height));
+    res.send("Your BMI is: "+bmi);
+})
+
+
+
+
+
 app.listen(3000, function(){
     console.log("App listening to server 3000");
 });
